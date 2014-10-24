@@ -61,7 +61,7 @@
               <li><a href="http://eepurl.com/Ykp-f" target="_blank">Newsletter</a></li>
               <li><a href="/values">Values</a></li>
               {% if site.twitter %}
-              <li><a href="{{ site.twitter }}">@mattantwest</a></li>
+              <li><a href="{{ site.twitter }}" target="_blank">@mattantwest</a></li>
               {% endif %}
             </ul>
           </nav>
@@ -98,7 +98,7 @@
         {% endif %}
       </section>
 
-    {% elif post %}
+    {% elif post.type != 'page' %}
 
       <article class="post">
         <h1>{{ post.title }}</h1>
