@@ -45,7 +45,6 @@ strong {
 blockquote {
   margin: 2em 0;
   padding-left: 2em;
-  /* color: \$light-text-color; */
   font-style: italic;
   border-left: 6px solid lighten($light-text-color, 30%);
 }
@@ -61,7 +60,7 @@ a:visited {
   color: $link-color;
   text-decoration: none;
   border-bottom: 1px dotted lighten($link-color, 20%);
-  @include transition(all ease-in-out 100ms);
+  @include transition(color ease-in-out 100ms, border ease-in-out 100ms);
 
   &:hover,
   &:focus {
