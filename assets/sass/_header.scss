@@ -44,3 +44,24 @@ header {
     }
   }
 }
+
+
+@media screen and (min-width: 0px) and (max-width: 650px) {
+  header {
+    margin: 1em 0 3em;
+
+    .logo {
+      float: none;
+      margin-left: 0;
+      margin-bottom: 1.5em;
+    }
+
+    nav {
+      li {
+        display: inline-block;
+        margin-right: 1em;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
