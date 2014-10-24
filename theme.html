@@ -36,6 +36,11 @@
     {% endif %}
   </head>
   <body>
+    {% if is_post %}
+    <a href="/" class="back-btn">&larr; Back to home page</a>
+    {% end %}
+
+    <div class="container clearfix">
 
     {% if is_login %}
 
