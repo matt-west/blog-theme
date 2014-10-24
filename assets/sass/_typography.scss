@@ -1,0 +1,71 @@
+body {
+  font-family: 'merriweather', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  color: $text-color;
+  padding: 1.5em;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'merriweather', Georgia, serif;
+}
+
+h1 {
+  font-size: 4.5em;
+}
+
+
+p, li {
+  line-height: 1.6em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.post-body {
+  font-family: 'kepler-std', Georgia, serif;
+
+  font-size: 1.35em;
+  font-weight: 300;
+
+  p {
+    margin: 0;
+
+    & + p {
+      text-indent: 2em;
+    }
+  }
+
+  img {
+    margin: 1.5em 0;
+  }
+}
+
+blockquote {
+  margin: 2em 0;
+  padding-left: 2em;
+  /* color: \$light-text-color; */
+  font-style: italic;
+  border-left: 6px solid lighten($light-text-color, 30%);
+}
+
+
+img {
+  max-width: 100%;
+}
+
+
+a,
+a:visited {
+  color: $link-color;
+  text-decoration: none;
+  border-bottom: 1px dotted lighten($link-color, 20%);
+  @include transition(all ease-in-out 100ms);
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    border-color: lighten($link-hover-color, 20%);
+  }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% if is_login %}Login
+      {% elif is_home %}{{ site.author }} - Tech Entrepreneur & Web Developer
+      {% elif is_tag %}{{ tag|format_tag(link=False, humanize=True) }} | Matt West's Blog
+      {% elif post %}
+        {% if post.type == 'page' %}
+          {{ post.title }}
+        {% else %}
+          {{ post.title }} by Matt West
+        {% endif %}
+      {% endif %}
+    </title>
+
+    {{ header_meta }}
+
+    <script src="//use.typekit.net/bhb8qae.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
+    <link rel="stylesheet" type="text/css" href="{{ assets('css/style.css') }}">
+
+    {% if site.analytics %}
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ site.analytics }}']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+    {% endif %}
+  </head>
+  <body>
+
+    {% if is_login %}
+
+      {{ login_form }}
+
+    {% else  %}
+
+      {% if is_home or is_tag %}
+        <header>
+          <div class="logo">
+            <img src="{{ site.avatar }}" alt="{{ site.author }}">
+          </div>
+          <h1>{{ site.author }}</h1>
+          <nav>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="http://html5foundations.com" target="_blank">Book</a></li>
+              <li><a href="http://eepurl.com/Ykp-f" target="_blank">Newsletter</a></li>
+              <li><a href="/values">Values</a></li>
+              {% if site.twitter %}
+              <li><a href="{{ site.twitter }}">@mattantwest</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </header>
+      {% endif %}
+
+    {% if is_home or is_tag %}
+
+      <section class="posts-list">
+
+        {% if is_tag %}
+        <div class="tag-title">Showing all posts tagged: <span>{{ tag|format_tag(link=False, humanize=True) }}</span></div>
+        {% endif %}
+
+        {% if posts %}
+          <ul>
+            {% for post in posts %}
+            <li>
+              <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+            </li>
+            {% endfor %}
+          </ul>
+
+          {% if not is_tag %}
+            <div class="pagination clearfix">
+              {% if pagination.prev %}<a href="{{ pagination.prev }}" class="post-prev">&larr; View Previous Posts</a>{% endif %}
+              {% if pagination.next %}<a href="{{ pagination.next }}" class="post-next">View More Posts &rarr;</a>{% endif %}
+            </div>
+          {% endif %}
+        {% else %}
+
+          <p>No Posts Yet :(</p>
+
+        {% endif %}
+      </section>
+
+    {% elif post %}
+
+      <article class="post">
+        <h1>{{ post.title }}</h1>
+        <div class="post-info">
+          <a href="https://twitter.com/MattAntWest" target="_blank">Matt West</a> wrote this on {{ post.created_at|format_date }}.
+        </div>
+        <div class="post-body clearfix"  data-type-cleanup="true">
+          {{ post.content }}
+
+          {% if post.type == 'link' %}
+          <p><a href="{{ post.url }}">{{ post.url }}</a></p>
+          {% endif %}
+        </div>
+
+        <div class="post-social">
+          <h4>Share &amp; Subscribe</h4>
+          <p>
+            Share this post on <a href="https://twitter.com/home?status={{ post.title }} by @MattAntWest {{ post.permalink }}" target="_blank">twitter</a>, <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.permalink }}" target="_blank">facebook</a>, or <a href="https://plus.google.com/share?url={{ post.permalink }}" target="_blank">google+</a>.
+          </p>
+          <p>
+            <a href="http://eepurl.com/Ykp-f" target="_blank">Subscribe to my newsletter.</a>
+          </p>
+        </div>
+      </article>
+
+    {% elif post.type == 'page' %}
+
+      <article class="post">
+        <h1>{{ page.title }}</h1>
+        <div class="post-body clearfix" data-type-cleanup="true">
+          {{ page.content }}
+        </div>
+      </article>
+
+    {% endif %}
+
+    <footer>
+      &copy; Matt West 2010-2014.
+    </footer>
+  </div>
+
+  {% endif %}
+
+  {{ footer_meta }}
+
+
+  <script>
+    !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+    arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+    d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+    insertBefore(d,q)}(window,document,'script','_gs');
+
+    _gs('GSN-543140-F');
+  </script>
+
+</body>
+</html>
